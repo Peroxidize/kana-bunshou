@@ -1,14 +1,7 @@
 <script setup lang="ts">
-import { type KanaRow as KanaRowType } from "@/chars";
 import { Card } from "@/components/ui/card";
 import KanaRow from "@/components/KanaRow.vue";
-
-defineProps({
-  hiraArr: Array<KanaRowType>,
-  hiraCombArr: Array<KanaRowType>,
-  kataArr: Array<KanaRowType>,
-  kataCombArr: Array<KanaRowType>,
-});
+import { hiraArr, hiraCombArr, kataArr, kataCombArr } from "@/chars";
 </script>
 
 <template>

@@ -3,20 +3,25 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Checkbox } from "@/components/ui/checkbox";
 import { type KanaRow } from "@/chars";
-import { onMounted, ref } from "vue";
+import { inject, onMounted, ref, type Ref } from "vue";
 
 const props = defineProps({
   name: String,
   kanaRow: Array<KanaRow>,
 });
-
-const checkBoxStates = ref<Record<string, boolean>>({});
+const updateCheckbox = inject<
+  (checked: boolean | string, name: string) => void
+>("updateCheckbox", () => {});
+const checkBoxStates = inject<Ref<Record<string, boolean>>>(
+  "checkBoxStates",
+  ref<Record<string, boolean>>({}),
+);
 
 function checkAll() {
   if (props.kanaRow) {
     props.kanaRow.forEach((row) => {
       checkBoxStates.value[row.name] = true;
-      handleCheckboxChange(true, row.name);
+      updateCheckbox(true, row.name);
     });
   }
 }
@@ -25,20 +30,9 @@ function uncheckAll() {
   if (props.kanaRow) {
     props.kanaRow.forEach((row) => {
       checkBoxStates.value[row.name] = false;
-      handleCheckboxChange(false, row.name);
+      updateCheckbox(false, row.name);
     });
   }
-}
-
-function handleCheckboxChange(
-  checked: boolean | "indeterminate",
-  name: string,
-) {
-  if (checked === "indeterminate") {
-    return;
-  }
-
-  localStorage.setItem(name, JSON.stringify(checked));
 }
 
 onMounted(() => {
@@ -81,7 +75,7 @@ onMounted(() => {
               :value="item.name"
               v-model="checkBoxStates[item.name]"
               @update:modelValue="
-                (checked) => handleCheckboxChange(checked, item.name)
+                (checked) => updateCheckbox(checked, item.name)
               "
             />
           </div>
