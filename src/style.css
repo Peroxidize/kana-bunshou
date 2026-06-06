@@ -129,3 +129,15 @@
         cursor: pointer;
     }
 }
+
+@font-face {
+    font-family: "KanjiStrokeOrders";
+    src: url("./assets/fonts/KanjiStrokeOrders.woff2") format("woff2");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+.font-kanji {
+    font-family: "KanjiStrokeOrders", sans-serif;
+}

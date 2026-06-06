@@ -2,6 +2,11 @@
 import { computed, onMounted, onUnmounted, ref } from "vue";
 import { Card } from "@/components/ui/card";
 
+defineProps({
+  currentScore: Number,
+  total: Number,
+});
+
 const time = ref(0);
 let timer: ReturnType<typeof setInterval> | null = null;
 
@@ -46,8 +51,7 @@ onUnmounted(() => {
         <span class="text-muted-foreground text-sm tracking-widest uppercase"
           >Score</span
         >
-        <!-- TODO -->
-        <span class="font-mono">0 / 0</span>
+        <span class="font-mono">{{ currentScore }} / {{ total }}</span>
       </div>
     </div>
   </Card>

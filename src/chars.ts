@@ -111,8 +111,8 @@ export const hiraZ: Array<Kana> = [
 
 export const hiraD: Array<Kana> = [
     { kana: "だ", roma: "da" },
-    { kana: "ぢ", roma: "ji" },
-    { kana: "づ", roma: "zu" },
+    { kana: "ぢ", roma: "di / ji" },
+    { kana: "づ", roma: "dzu / zu" },
     { kana: "で", roma: "de" },
     { kana: "ど", roma: "do" },
 ];
@@ -311,8 +311,8 @@ export const kataZ: Array<Kana> = [
 
 export const kataD: Array<Kana> = [
     { kana: "ダ", roma: "da" },
-    { kana: "ヂ", roma: "ji" },
-    { kana: "ヅ", roma: "zu" },
+    { kana: "ヂ", roma: "di / ji" },
+    { kana: "ヅ", roma: "dzu / zu" },
     { kana: "デ", roma: "de" },
     { kana: "ド", roma: "do" },
 ];
