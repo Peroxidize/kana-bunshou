@@ -49,22 +49,27 @@ onMounted(() => {
 
 <template>
   <div>
-    <div class="flex justify-between">
+    <div
+      class="flex flex-col items-center gap-2 sm:flex-row sm:justify-between
+        sm:gap-0"
+    >
       <h3 class="text-lg font-semibold">{{ name }}</h3>
-      <div class="flex items-center">
+      <div class="flex flex-col gap-0 sm:flex-row sm:items-center">
         <Button variant="link" @click="checkAll">check all</Button>
-        <Separator orientation="vertical" class="max-h-4" />
+
+        <Separator orientation="vertical" class="hidden sm:block sm:min-h-4" />
+
         <Button variant="link" @click="uncheckAll">uncheck all</Button>
       </div>
     </div>
 
     <Separator class="mb-4" />
 
-    <div class="flex flex-row">
+    <div class="flex flex-row flex-wrap">
       <template v-for="item in kanaRow">
         <div
-          class="-mr-px flex flex-col items-center justify-center border
-            bg-neutral-800"
+          class="-mr-px flex shrink-0 flex-col items-center justify-center
+            border bg-neutral-800"
         >
           <div
             class="flex w-full items-center justify-center border-b

@@ -38,26 +38,33 @@ onUnmounted(() => {
 
 <template>
   <Card
-    class="flex min-h-120 flex-col items-center justify-between rounded-none!
-      px-8 py-4!"
+    class="flex min-h-100 flex-col items-center justify-between rounded-none!
+      px-8 py-4! sm:min-h-120"
   >
-    <h3 class="text-muted-foreground text-2xl font-semibold">
+    <h3
+      class="text-muted-foreground text-center text-base font-semibold
+        sm:text-2xl"
+    >
       <span v-if="hira && !kata"> Write Hiragana for </span>
       <span v-if="!hira && kata"> Write Katakana for </span>
       <span v-if="hira && kata"> Write Hiragana and Katakana for </span>
       <span v-if="!hira && !kata"> Please select a column</span>
     </h3>
 
-    <div class="flex gap-16">
-      <span v-if="!isRevealed && (hira || kata)" class="text-8xl">{{
+    <div class="flex flex-wrap justify-center gap-8 sm:gap-16">
+      <span v-if="!isRevealed && (hira || kata)" class="text-6xl sm:text-8xl">{{
         roma
       }}</span>
-      <span v-if="isRevealed && hira" class="font-kanji text-[200px]">{{
-        hira
-      }}</span>
-      <span v-if="isRevealed && kata" class="font-kanji text-[200px]">{{
-        kata
-      }}</span>
+      <span
+        v-if="isRevealed && hira"
+        class="font-kanji text-[150px] sm:text-[200px]"
+        >{{ hira }}</span
+      >
+      <span
+        v-if="isRevealed && kata"
+        class="font-kanji text-[150px] sm:text-[200px]"
+        >{{ kata }}</span
+      >
     </div>
 
     <div class="flex gap-4">

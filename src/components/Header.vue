@@ -35,7 +35,8 @@ onUnmounted(() => {
 
 <template>
   <Card
-    class="flex flex-row items-center justify-between rounded-none! px-8 py-4!"
+    class="flex flex-col items-center justify-between rounded-none! px-8 py-4!
+      sm:flex-row"
   >
     <h3 class="text-2xl font-semibold">Kana Bunshou</h3>
 
