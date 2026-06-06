@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { onMounted, onUnmounted } from "vue";
 
-defineProps<{
+const props = defineProps<{
   hira: String | null;
   kata: String | null;
   roma: String | null;
@@ -11,6 +12,28 @@ defineProps<{
 const emit = defineEmits<{
   (e: "answer-submitted", result: "correct" | "incorrect" | "reveal"): void;
 }>();
+
+function handleKeyDown(event: KeyboardEvent) {
+  if (event.key === "1" && !props.isRevealed) {
+    emit("answer-submitted", "reveal");
+  }
+
+  if (event.key === "1" && props.isRevealed) {
+    emit("answer-submitted", "incorrect");
+  }
+
+  if (event.key === "2" && props.isRevealed) {
+    emit("answer-submitted", "correct");
+  }
+}
+
+onMounted(() => {
+  window.addEventListener("keydown", handleKeyDown);
+});
+
+onUnmounted(() => {
+  window.removeEventListener("keydown", handleKeyDown);
+});
 </script>
 
 <template>
@@ -41,6 +64,7 @@ const emit = defineEmits<{
       <Button
         v-if="!isRevealed && (hira || kata)"
         class="rounded-none!"
+        title="Keyboard shortcut: 1"
         @click="emit('answer-submitted', 'reveal')"
       >
         Reveal
@@ -50,6 +74,7 @@ const emit = defineEmits<{
         v-if="isRevealed"
         class="rounded-none!"
         variant="destructive"
+        title="Keyboard shortcut: 1"
         @click="emit('answer-submitted', 'incorrect')"
       >
         Incorrect
@@ -57,6 +82,7 @@ const emit = defineEmits<{
       <Button
         v-if="isRevealed"
         class="rounded-none!"
+        title="Keyboard shortcut: 2"
         @click="emit('answer-submitted', 'correct')"
       >
         Correct

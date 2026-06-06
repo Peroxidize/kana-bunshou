@@ -35,10 +35,10 @@ function handleCheckboxChange(
 
   checkBoxStates.value[name] = checked;
   localStorage.setItem(name, JSON.stringify(checked));
-  randomizedOrder();
+  randomizeOrder();
 }
 
-function randomizedOrder() {
+function randomizeOrder() {
   isRevealed.value = false;
   const result: string[] = [];
   const kanaAcc: Array<{ hira: string; kata: string; roma: string }> = [];
@@ -119,7 +119,7 @@ watch(
   (newLength) => {
     const hasActiveFilters = Object.values(checkBoxStates.value).some(Boolean);
     if (newLength === 0 && hasActiveFilters) {
-      randomizedOrder();
+      randomizeOrder();
     }
   },
 );
@@ -132,7 +132,7 @@ provide("updateCheckbox", handleCheckboxChange);
 provide("checkBoxStates", checkBoxStates);
 
 onMounted(() => {
-  randomizedOrder();
+  randomizeOrder();
 });
 </script>
 
