@@ -250,7 +250,7 @@ export const kataH: Array<Kana> = [
     { kana: "ヒ", roma: "hi" },
     { kana: "フ", roma: "fu" },
     { kana: "ヘ", roma: "he" },
-    { kana: "ノ", roma: "ho" },
+    { kana: "ホ", roma: "ho" },
 ];
 
 export const kataM: Array<Kana> = [
