@@ -5,7 +5,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { type KanaRow } from "@/chars";
 import { inject, onMounted, ref, type Ref } from "vue";
 
-const props = defineProps({
+const { kanaRow, name} = defineProps({
   name: String,
   kanaRow: Array<KanaRow>,
 });
@@ -18,8 +18,8 @@ const checkBoxStates = inject<Ref<Record<string, boolean>>>(
 );
 
 function checkAll() {
-  if (props.kanaRow) {
-    props.kanaRow.forEach((row) => {
+  if (kanaRow) {
+    kanaRow.forEach((row) => {
       checkBoxStates.value[row.name] = true;
       updateCheckbox(true, row.name);
     });
@@ -27,8 +27,8 @@ function checkAll() {
 }
 
 function uncheckAll() {
-  if (props.kanaRow) {
-    props.kanaRow.forEach((row) => {
+  if (kanaRow) {
+    kanaRow.forEach((row) => {
       checkBoxStates.value[row.name] = false;
       updateCheckbox(false, row.name);
     });
@@ -36,8 +36,8 @@ function uncheckAll() {
 }
 
 onMounted(() => {
-  if (props.kanaRow) {
-    props.kanaRow.forEach((row) => {
+  if (kanaRow) {
+    kanaRow.forEach((row) => {
       const result = localStorage.getItem(row.name);
       if (result) {
         checkBoxStates.value[row.name] = JSON.parse(result);

@@ -3,7 +3,7 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { onMounted, onUnmounted } from "vue";
 
-const props = defineProps<{
+const { hira, isRevealed, kata, roma} = defineProps<{
   hira: String | null;
   kata: String | null;
   roma: String | null;
@@ -23,15 +23,15 @@ const emit = defineEmits<{
 }>();
 
 function handleKeyDown(event: KeyboardEvent) {
-  if (event.key === "1" && !props.isRevealed) {
+  if (event.key === "1" && !isRevealed) {
     emit("answer-submitted", "reveal");
   }
 
-  if (event.key === "1" && props.isRevealed) {
+  if (event.key === "1" && isRevealed) {
     emit("answer-submitted", "incorrect");
   }
 
-  if (event.key === "2" && props.isRevealed) {
+  if (event.key === "2" && isRevealed) {
     emit("answer-submitted", "correct");
   }
 }
