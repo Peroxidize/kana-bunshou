@@ -3,26 +3,35 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { onMounted, onUnmounted } from "vue";
 
-const props = defineProps<{
+const { hira, isRevealed, kata, roma} = defineProps<{
   hira: String | null;
   kata: String | null;
   roma: String | null;
   isRevealed: Boolean;
 }>();
+
+/**
+ * You can use format:
+ *  {
+ *    [emit-name]: [emit-params]  // You can use tuple format for named params 
+ *  }
+ */
+
 const emit = defineEmits<{
-  (e: "answer-submitted", result: "correct" | "incorrect" | "reveal"): void;
+  // (e: "answer-submitted", result: "correct" | "incorrect" | "reveal"): void;
+  'answer-submitted': [result: "correct" | "incorrect" | "reveal"]
 }>();
 
 function handleKeyDown(event: KeyboardEvent) {
-  if (event.key === "1" && !props.isRevealed) {
+  if (event.key === "1" && !isRevealed) {
     emit("answer-submitted", "reveal");
   }
 
-  if (event.key === "1" && props.isRevealed) {
+  if (event.key === "1" && isRevealed) {
     emit("answer-submitted", "incorrect");
   }
 
-  if (event.key === "2" && props.isRevealed) {
+  if (event.key === "2" && isRevealed) {
     emit("answer-submitted", "correct");
   }
 }
