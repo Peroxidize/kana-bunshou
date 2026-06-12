@@ -9,8 +9,17 @@ const props = defineProps<{
   roma: String | null;
   isRevealed: Boolean;
 }>();
+
+/**
+ * You can use format:
+ *  {
+ *    [emit-name]: [emit-params]  // You can use tuple format for named params 
+ *  }
+ */
+
 const emit = defineEmits<{
-  (e: "answer-submitted", result: "correct" | "incorrect" | "reveal"): void;
+  // (e: "answer-submitted", result: "correct" | "incorrect" | "reveal"): void;
+  'answer-submitted': [result: "correct" | "incorrect" | "reveal"]
 }>();
 
 function handleKeyDown(event: KeyboardEvent) {
